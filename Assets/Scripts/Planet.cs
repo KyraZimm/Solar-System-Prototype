@@ -33,6 +33,7 @@ public class Planet : MonoBehaviour {
     public static Planet MakeNewPlanet(PlanetData newPlanetData) {
         Vector3 startingPos = new Vector3(newPlanetData.distFromSun, 0, 0);
         Planet newPlanet = Instantiate(planetPrefab, startingPos, Quaternion.identity).GetComponent<Planet>();
+        newPlanet.gameObject.name = newPlanetData.name;
         newPlanet.data = newPlanetData;
         newPlanet.transform.localScale = new Vector3(newPlanetData.scale, newPlanetData.scale, newPlanetData.scale);
         return newPlanet;

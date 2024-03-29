@@ -552,13 +552,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0.08299369, y: 0.096838266, z: 0.008103407, w: 0.9918008}
+  m_LocalPosition: {x: -0.09, y: 3.84, z: -15.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 9.384, y: 11.307, z: 1.867}
 --- !u!1 &1470298541
 GameObject:
   m_ObjectHideFlags: 0
@@ -604,7 +604,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planetCSV: {fileID: 4900000, guid: 1677eb39cc34c85409b3453b5c136d95, type: 3}
-  planetPrefab: {fileID: 7244967337213131818, guid: 7385439af502cbd42bc2ccab1528666b, type: 3}
 --- !u!1 &1775905786
 GameObject:
   m_ObjectHideFlags: 0
@@ -705,8 +704,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
