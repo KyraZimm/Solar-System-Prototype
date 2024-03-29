@@ -6,6 +6,8 @@ public class Planet : MonoBehaviour {
 
     PlanetData data;
     private Rigidbody rb;
+
+    const float TIME_SCALE = .0001f;
     private static GameObject planetPrefab {
         /*get {
             if (m_value == null)
@@ -21,11 +23,19 @@ public class Planet : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        float angleToOrbit = 360 / (data.orbit * Time.fixedDeltaTime);
-        transform.Rotate(0, 0, angleToOrbit);
+        //planet orbit
+        float angleOfOrbitPerFrame = 360 / (data.orbit * Time.fixedDeltaTime);
+        float currAngleOfOrbit = angleOfOrbitPerFrame * Time.time * TIME_SCALE;
+
+        float xDisp = Mathf.Cos(currAngleOfOrbit) * data.distFromSun;
+        float zDisp = Mathf.Sin(currAngleOfOrbit) * data.distFromSun;
+
+        rb.MovePosition(new Vector3(xDisp, 0, zDisp));
 
         //planet rotation
-        rb.MoveRotation(Quaternion.AngleAxis((data.rot * Time.fixedDeltaTime), Vector3.up));
+        float angleOfRotPerFrame = 360 / (data.rot * Time.fixedDeltaTime);
+        float currAngleOfRot = angleOfRotPerFrame * Time.time * TIME_SCALE;
+        rb.MoveRotation(Quaternion.AngleAxis(currAngleOfRot, Vector3.up));
     }
 
     private void OnMouseOver() { UIValues.Instance.UpdateUI(data); }
