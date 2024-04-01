@@ -19,7 +19,6 @@ public class Planet : MonoBehaviour {
 
     private void Awake() {
         rb = GetComponent<Rigidbody>();
-
     }
 
     private void FixedUpdate() {
@@ -29,7 +28,6 @@ public class Planet : MonoBehaviour {
 
         float xDisp = Mathf.Cos(currAngleOfOrbit) * data.distFromSun;
         float zDisp = Mathf.Sin(currAngleOfOrbit) * data.distFromSun;
-
         rb.MovePosition(new Vector3(xDisp, 0, zDisp));
 
         //planet rotation
