@@ -19,12 +19,13 @@ public class GameManager : MonoBehaviour {
     }
 
     private void InstantiatePlanetsFromCSV(TextAsset csv) {
-        var lines = csv.text.Split('\n');
-        for (int i = 0; i < lines.Length; i++) {
-            PlanetData pData = new PlanetData(lines[i]);
-            Planet.MakeNewPlanet(pData);
+        string[] lines = csv.text.Split('\n');
+        for (int i = 1; i < lines.Length; i++) {
+            string[] info = lines[i].Split(',');
+            PlanetData pData = new PlanetData(info[0], float.Parse(info[1]), float.Parse(info[2]), float.Parse(info[3]), float.Parse(info[4]));
+
+            Planet newPlanet = Planet.MakeNewPlanet(pData);
         }
     }
-
 
 }
