@@ -26,4 +26,12 @@ public class TextureMapper : MonoBehaviour {
     }
 #endif
 
+    public Texture3D GetPlanetTexture(string planetName) {
+        foreach (AssignedTexture texture in textures)
+            if (texture.key == planetName)
+                return texture.texture;
+
+        return null;
+    }
+
 }
