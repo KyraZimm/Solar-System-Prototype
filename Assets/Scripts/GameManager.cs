@@ -15,8 +15,7 @@ public class GameManager : MonoBehaviour {
     }
 
     private void Start() {
-        InstantiatePlanetsFromCSV(planetCSV);
-    }
+        InstantiatePlanetsFromCSV(planetCSV);}
 
     private void InstantiatePlanetsFromCSV(TextAsset csv) {
         string[] lines = csv.text.Split('\n');
