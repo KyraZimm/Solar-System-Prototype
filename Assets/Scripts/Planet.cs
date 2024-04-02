@@ -52,7 +52,7 @@ public class Planet : MonoBehaviour {
         rb.MoveRotation(Quaternion.AngleAxis(currAngleOfRot, Vector3.up));
     }
 
-    private void OnMouseOver() { UIValues.Instance.UpdateUI(data); }
+    private void OnMouseOver() { InfoPanel.Instance.UpdateUI(data); }
 
     public static Planet MakeNewPlanet(PlanetData newPlanetData) {
         //instantiate new planet
