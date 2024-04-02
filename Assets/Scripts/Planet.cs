@@ -9,6 +9,7 @@ public class Planet : MonoBehaviour {
 
     //physics values
     private Rigidbody rb;
+    private TrailRenderer trail;
     private const float TIME_SCALE = .0001f;
 
     //resources for planet loading
@@ -33,6 +34,7 @@ public class Planet : MonoBehaviour {
 
     private void Awake() {
         rb = GetComponent<Rigidbody>();
+        trail = GetComponent<TrailRenderer>();
     }
 
     private void FixedUpdate() {
