@@ -64,8 +64,11 @@ public class Planet : MonoBehaviour {
         newPlanet.data = newPlanetData;
         newPlanet.transform.localScale = new Vector3(newPlanetData.scale, newPlanetData.scale, newPlanetData.scale);
 
-        //texture planet
+        //if a texture has been chosen for planet, assign texture
         Texture pTex = planetTextures.GetPlanetTexture(newPlanetData.name);
+        if (pTex == null)
+            return newPlanet;
+
         MaterialPropertyBlock matBlock = new MaterialPropertyBlock(); //using a material property block instead of different materials to reduce draw calls
         matBlock.SetTexture("_MainTex", pTex);
         newPlanet.GetComponent<MeshRenderer>().SetPropertyBlock(matBlock);
