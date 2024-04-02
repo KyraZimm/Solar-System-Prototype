@@ -5,14 +5,17 @@ using UnityEngine;
 public class PlanetCSVReader : MonoBehaviour {
     private const string PLANET_CSV_PATH = "PlanetLoadInfo/Planets";
 
-    //private int lastNumOfCSVChars;
-    private static TextAsset planetCSV;
+    private static TextAsset _planetCSV;
+    private static TextAsset planetCSV {
+        get {
+            if (_planetCSV == null)
+                _planetCSV = Resources.Load(PLANET_CSV_PATH) as TextAsset;
+            return _planetCSV;
+        }
+    }
 
     public static string[] GetPlanetNames_EditorOnly() {
 #if UNITY_EDITOR
-        if (planetCSV == null)
-            planetCSV = Resources.Load(PLANET_CSV_PATH) as TextAsset;
-
         //update list of planet names
         string[] lines = planetCSV.text.Split('\n');
         string[] planetNames = new string[lines.Length - 1];
@@ -28,9 +31,6 @@ public class PlanetCSVReader : MonoBehaviour {
     }
 
     public static PlanetData[] GetAllPlanets() {
-        if (planetCSV == null)
-            planetCSV = Resources.Load(PLANET_CSV_PATH) as TextAsset;
-
         string[] lines = planetCSV.text.Split('\n');
         PlanetData[] pData = new PlanetData[lines.Length-1];
 

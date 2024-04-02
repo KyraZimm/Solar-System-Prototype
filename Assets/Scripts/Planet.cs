@@ -1,20 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Planet : MonoBehaviour {
 
     PlanetData data;
-    private Rigidbody rb;
 
-    const float TIME_SCALE = .0001f;
+    //physics values
+    private Rigidbody rb;
+    private const float TIME_SCALE = .0001f;
+
+    //resources for planet loading
+    private const string PLANET_RESOURCES_PATH = "PlanetLoadInfo";
+    private static GameObject _planetPrefab;
     private static GameObject planetPrefab {
-        /*get {
-            if (m_value == null)
-                m_value = Resources.Load("PlanetPrefab") as GameObject;
-            return m_value;
-        }*/
-        get { return Resources.Load("PlanetPrefab") as GameObject; }
+        get {
+            if (_planetPrefab == null)
+                _planetPrefab = Resources.Load("PlanetPrefab") as GameObject;
+            return _planetPrefab;
+        }
+    }
+
+    private static TextureMapper _planetTextures;
+    private static TextureMapper planetTextures {
+        get {
+            if (_planetTextures == null)
+                _planetTextures = Resources.Load(PLANET_RESOURCES_PATH + "/PlanetTextures").GetComponent<TextureMapper>();
+            return _planetTextures;
+        }
     }
 
     private void Awake() {
@@ -39,11 +53,21 @@ public class Planet : MonoBehaviour {
     private void OnMouseOver() { UIValues.Instance.UpdateUI(data); }
 
     public static Planet MakeNewPlanet(PlanetData newPlanetData) {
+        //instantiate new planet
         Vector3 startingPos = new Vector3(newPlanetData.distFromSun, 0, 0);
         Planet newPlanet = Instantiate(planetPrefab, startingPos, Quaternion.identity).GetComponent<Planet>();
+
+        //adjust planet properties to match spawn data
         newPlanet.gameObject.name = newPlanetData.name;
         newPlanet.data = newPlanetData;
         newPlanet.transform.localScale = new Vector3(newPlanetData.scale, newPlanetData.scale, newPlanetData.scale);
+
+        //texture planet
+        Texture pTex = planetTextures.GetPlanetTexture(newPlanetData.name);
+        MaterialPropertyBlock matBlock = new MaterialPropertyBlock(); //using a material property block instead of different materials to reduce draw calls
+        matBlock.SetTexture("_MainTex", pTex);
+        newPlanet.GetComponent<MeshRenderer>().SetPropertyBlock(matBlock);
+
         return newPlanet;
     }
 

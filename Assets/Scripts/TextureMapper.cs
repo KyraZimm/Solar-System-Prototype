@@ -5,7 +5,7 @@ using UnityEngine;
 public class TextureMapper : MonoBehaviour {
     [System.Serializable] public class AssignedTexture {
         [HideInInspector] public string key;
-        public Texture3D texture;
+        public Texture texture;
         public AssignedTexture(string name) { key = name; }
     }
 
@@ -26,7 +26,7 @@ public class TextureMapper : MonoBehaviour {
     }
 #endif
 
-    public Texture3D GetPlanetTexture(string planetName) {
+    public Texture GetPlanetTexture(string planetName) {
         foreach (AssignedTexture texture in textures)
             if (texture.key == planetName)
                 return texture.texture;
