@@ -71,7 +71,7 @@ public class InfoPanel : MonoBehaviour {
     public void UpdateUI(PlanetData planetToDisplay) {
         PlanetUIData planetUI = uiDataInCurrLanguage[planetToDisplay.name];
         planetName.text = planetUI.name;
-        image = Resources.Load(planetUI.image) as Image;
+        image.sprite = Resources.Load<Sprite>(planetUI.image);
         info.text = planetUI.info;
     }
     #endregion
