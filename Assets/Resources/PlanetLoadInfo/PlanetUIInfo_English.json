@@ -1,0 +1,52 @@
+{
+  "Planets": [
+    {
+      "ID": "Mercury",
+      "name": "Mercury",
+      "image": "UIAssets/Mercury_UI.jpg",
+      "info": "Some text about Mercury should go here!"
+    },
+    {
+      "ID": "Venus",
+      "name": "Venus",
+      "image": "UIAssets/Venus_UI.jpg",
+      "info": "Some text about Venus should go here!"
+    },
+    {
+      "ID": "Earth",
+      "name": "Earth",
+      "image": "UIAssets/Earth_UI.jpg",
+      "info": "Some text about Earth should go here!"
+    },
+    {
+      "ID": "Mars",
+      "name": "Mars",
+      "image": "UIAssets/Mars_UI.jpg",
+      "info": "Some text about Mars should go here!"
+    },
+    {
+      "ID": "Jupiter",
+      "name": "Jupiter",
+      "image": "UIAssets/Jupiter_UI.jpg",
+      "info": "Some text about Jupiter should go here!"
+    },
+    {
+      "ID": "Saturn",
+      "name": "Saturn",
+      "image": "UIAssets/Saturn_UI.jpg",
+      "info": "Some text about Saturn should go here!"
+    },
+    {
+      "ID": "Uranus",
+      "name": "Uranus",
+      "image": "UIAssets/Uranus_UI.jpg",
+      "info": "Some text about Uranus should go here!"
+    },
+    {
+      "ID": "Neptune",
+      "name": "Neptune",
+      "image": "UIAssets/Neptune_UI.jpg",
+      "info": "Some text about Neptune should go here!"
+    }
+  ]
+}

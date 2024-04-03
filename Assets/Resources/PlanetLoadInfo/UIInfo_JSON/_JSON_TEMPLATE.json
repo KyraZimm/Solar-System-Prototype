@@ -3,49 +3,49 @@
     {
       "ID": "Mercury",
       "name": "",
-      "image": "Assets/Art/UIAssets/Mercury_UI.jpg",
+      "image": "UIAssets/Mercury_UI.jpg",
       "info": ""
     },
     {
       "ID": "Venus",
       "name": "",
-      "image": "Assets/Art/UIAssets/Venus_UI.jpg",
+      "image": "UIAssets/Venus_UI.jpg",
       "info": ""
     },
     {
       "ID": "Earth",
       "name": "",
-      "image": "Assets/Art/UIAssets/Earth_UI.jpg",
+      "image": "UIAssets/Earth_UI.jpg",
       "info": ""
     },
     {
       "ID": "Mars",
       "name": "",
-      "image": "Assets/Art/UIAssets/Mars_UI.jpg",
+      "image": "UIAssets/Mars_UI.jpg",
       "info": ""
     },
     {
       "ID": "Jupiter",
       "name": "",
-      "image": "Assets/Art/UIAssets/Jupiter_UI.jpg",
+      "image": "UIAssets/Jupiter_UI.jpg",
       "info": ""
     },
     {
       "ID": "Saturn",
       "name": "",
-      "image": "Assets/Art/UIAssets/Saturn_UI.jpg",
+      "image": "UIAssets/Saturn_UI.jpg",
       "info": ""
     },
     {
       "ID": "Uranus",
       "name": "",
-      "image": "Assets/Art/UIAssets/Uranus_UI.jpg",
+      "image": "UIAssets/Uranus_UI.jpg",
       "info": ""
     },
     {
       "ID": "Neptune",
       "name": "",
-      "image": "Assets/Art/UIAssets/Neptune_UI.jpg",
+      "image": "UIAssets/Neptune_UI.jpg",
       "info": ""
     }
   ]
