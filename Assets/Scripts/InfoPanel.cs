@@ -7,6 +7,7 @@ using TMPro;
 public class InfoPanel : MonoBehaviour {
     public static InfoPanel Instance { get; private set; }
     public bool IsVisible { get { return gameObject.activeSelf; } }
+    public string CurrPlanet { get; private set; }
 
     [Header("Component Refs")]
     [SerializeField] TMP_Text planetName;
@@ -73,6 +74,8 @@ public class InfoPanel : MonoBehaviour {
         planetName.text = planetUI.name;
         image.sprite = Resources.Load<Sprite>(planetUI.image);
         info.text = planetUI.info;
+
+        CurrPlanet = planetToDisplay.name;
     }
     #endregion
 

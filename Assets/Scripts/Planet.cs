@@ -55,8 +55,15 @@ public class Planet : MonoBehaviour {
     #endregion
 
     #region UI Interaction
-    private void OnMouseOver() { InfoPanel.Instance.UpdateUI(data); }
-    private void OnMouseDown() { InfoPanel.Instance.ToggleVisibility(); }
+    private void OnMouseOver() { }
+    private void OnMouseDown() {
+        if (InfoPanel.Instance.CurrPlanet == data.name)
+            InfoPanel.Instance.ToggleVisibility();
+        else {
+            InfoPanel.Instance.UpdateUI(data);
+            InfoPanel.Instance.ToggleVisibility(true);
+        }
+    }
     #endregion
 
     #region GameObject Instantiation & Initialization
