@@ -37,6 +37,7 @@ public class Planet : MonoBehaviour {
         trail = GetComponent<TrailRenderer>();
     }
 
+    #region Physics Updates
     private void FixedUpdate() {
         //planet orbit
         float angleOfOrbitPerFrame = 360 / (data.orbit * Time.fixedDeltaTime);
@@ -51,9 +52,14 @@ public class Planet : MonoBehaviour {
         float currAngleOfRot = angleOfRotPerFrame * Time.time * TIME_SCALE;
         rb.MoveRotation(Quaternion.AngleAxis(currAngleOfRot, Vector3.up));
     }
+    #endregion
 
+    #region UI Interaction
     private void OnMouseOver() { InfoPanel.Instance.UpdateUI(data); }
+    private void OnMouseDown() { InfoPanel.Instance.ToggleVisibility(); }
+    #endregion
 
+    #region GameObject Instantiation & Initialization
     public static Planet MakeNewPlanet(PlanetData newPlanetData) {
         //instantiate new planet
         Vector3 startingPos = new Vector3(newPlanetData.distFromSun, 0, 0);
@@ -75,5 +81,6 @@ public class Planet : MonoBehaviour {
 
         return newPlanet;
     }
+    #endregion
 
 }
