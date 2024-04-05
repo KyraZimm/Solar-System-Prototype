@@ -13,7 +13,11 @@ public class Planet : MonoBehaviour {
     [SerializeField] private GameObject highlight;
 
     //physics values
-    private const float TIME_SCALE = .0001f;
+    private static float TIME_SCALE = .001f;
+    private const float MIN_ALLOWED_TIME_SCALE = 0f;
+    private const float MAX_ALLOWED_TIME_SCALE = 0.01f;
+    private float angleOfOrbitLastFixedUpdate = 0;
+    private float rotAngleLastFixedUpdate = 0;
 
     //resources for planet loading
     private const string PLANET_RESOURCES_PATH = "PlanetLoadInfo";
@@ -39,18 +43,37 @@ public class Planet : MonoBehaviour {
     #region Physics Updates
     private void FixedUpdate() {
         //planet orbit
-        float angleOfOrbitPerFrame = 360 / (data.orbit * Time.fixedDeltaTime);
-        float currAngleOfOrbit = angleOfOrbitPerFrame * Time.time * TIME_SCALE;
+        float angleOfOrbitPerFixedUpdate = (360 / data.orbit * Time.fixedDeltaTime) * TIME_SCALE;
+        //float currAngleOfOrbit = angleOfOrbitPerFrame * Time.time * TIME_SCALE;
+        float currAngleOfOrbit = angleOfOrbitLastFixedUpdate + angleOfOrbitPerFixedUpdate;
 
         float xDisp = Mathf.Cos(currAngleOfOrbit) * data.distFromSun;
         float zDisp = Mathf.Sin(currAngleOfOrbit) * data.distFromSun;
         rb.MovePosition(new Vector3(xDisp, 0, zDisp));
 
         //planet rotation
-        float angleOfRotPerFrame = 360 / (data.rot * Time.fixedDeltaTime);
-        float currAngleOfRot = angleOfRotPerFrame * Time.time * TIME_SCALE;
+        float angleOfRotPerFrame = (360 / data.rot * Time.fixedDeltaTime) * TIME_SCALE;
+        //float currAngleOfRot = angleOfRotPerFrame * Time.time * TIME_SCALE;
+        float currAngleOfRot = rotAngleLastFixedUpdate + angleOfRotPerFrame;
         rb.MoveRotation(Quaternion.AngleAxis(currAngleOfRot, Vector3.up));
+
+        //store angles for next fixed update
+        angleOfOrbitLastFixedUpdate = currAngleOfOrbit;
+        rotAngleLastFixedUpdate = currAngleOfRot;
     }
+
+    public static void ChangeTimeScale(float timeScale) {
+        if (timeScale > MAX_ALLOWED_TIME_SCALE) {
+            Debug.LogWarning($"Tried to change time scale to {timeScale}, which above the accepted ceiling of {MAX_ALLOWED_TIME_SCALE}.");
+            timeScale = MAX_ALLOWED_TIME_SCALE;
+        }
+        else if (timeScale < MIN_ALLOWED_TIME_SCALE) {
+            Debug.LogWarning($"Tried to change time scale to {timeScale}, which below the accepted floor of {MIN_ALLOWED_TIME_SCALE}.");
+            timeScale = MIN_ALLOWED_TIME_SCALE;
+        }
+        TIME_SCALE = timeScale;
+    }
+
     #endregion
 
     #region UI Interaction
@@ -95,6 +118,7 @@ public class Planet : MonoBehaviour {
 
         return newPlanet;
     }
+
     #endregion
 
 }
