@@ -7,9 +7,12 @@ public class Planet : MonoBehaviour {
 
     PlanetData data;
 
+    //component refs
+    [SerializeField] private Rigidbody rb;
+    [SerializeField] private TrailRenderer trail;
+    [SerializeField] private GameObject highlight;
+
     //physics values
-    private Rigidbody rb;
-    private TrailRenderer trail;
     private const float TIME_SCALE = .0001f;
 
     //resources for planet loading
@@ -32,10 +35,6 @@ public class Planet : MonoBehaviour {
         }
     }
 
-    private void Awake() {
-        rb = GetComponent<Rigidbody>();
-        trail = GetComponent<TrailRenderer>();
-    }
 
     #region Physics Updates
     private void FixedUpdate() {
@@ -55,7 +54,12 @@ public class Planet : MonoBehaviour {
     #endregion
 
     #region UI Interaction
-    private void OnMouseOver() { }
+    private void Awake() {
+        ShowHighlight(false);
+    }
+
+    private void OnMouseOver() { ShowHighlight(true); }
+    private void OnMouseExit() { ShowHighlight(false); }
     private void OnMouseDown() {
         if (InfoPanel.Instance.CurrPlanet == data.name)
             InfoPanel.Instance.ToggleVisibility();
@@ -64,9 +68,12 @@ public class Planet : MonoBehaviour {
             InfoPanel.Instance.ToggleVisibility(true);
         }
     }
+
+    private void ShowHighlight(bool highlightOn) { highlight.SetActive(highlightOn); }
     #endregion
 
     #region GameObject Instantiation & Initialization
+
     public static Planet MakeNewPlanet(PlanetData newPlanetData) {
         //instantiate new planet
         Vector3 startingPos = new Vector3(newPlanetData.distFromSun, 0, 0);
