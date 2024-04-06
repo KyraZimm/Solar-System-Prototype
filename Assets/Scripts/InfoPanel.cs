@@ -14,10 +14,11 @@ public class InfoPanel : MonoBehaviour {
     [SerializeField] Image image;
     [SerializeField] TMP_Text info;
     [Space(5f)]
-    [Header("TEMP: Targeted JSON File")]
-    [SerializeField] TextAsset json; //eventually this should be controlled with a language-loading system
+    [Header("Default Settings")]
+    [SerializeField] string defaultLanguage;
 
     private Dictionary<string, PlanetUIData> uiDataInCurrLanguage = new Dictionary<string, PlanetUIData>();
+    private string currLanguage;
     private class PlanetUIData {
         public string name;
         public string image;
@@ -38,7 +39,7 @@ public class InfoPanel : MonoBehaviour {
         Instance = this;
 
         ToggleVisibility(false);
-        UploadJSONData(json);
+        UploadLanguage(defaultLanguage);
     }
 
     #region JSON Reading & Language Switching
@@ -54,7 +55,13 @@ public class InfoPanel : MonoBehaviour {
     }
 
     //to be called whenever the current used language is switched
-    private void UploadJSONData(TextAsset json) {
+    private void UploadLanguage(string language) {
+        TextAsset json = LanguageLibrary.Instance.GetJSON(language);
+        if (json == null) {
+            Debug.LogError($"Language {language} was not identified in LanguageLibrary. Are you misspelling an entry?");
+            return;
+        }
+
         uiDataInCurrLanguage.Clear();
 
         PlanetJSONItemList readJSON = JsonUtility.FromJson<PlanetJSONItemList>(json.text);

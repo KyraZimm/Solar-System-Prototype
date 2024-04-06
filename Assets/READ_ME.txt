@@ -6,6 +6,7 @@
 -  To add/edit UI text in different languages, designers should be directed to "UIInfo_JSON" in the PlanetLoadInfo folder. Folder contains a JSON template called "_JSON_TEMPLATE" that designers can copy-paste when adding new languages.
 		-  There should be 1 JSON file per supported language. The "ID" property for each planet MUST be the name of the planet in English, and match the planet name in the "Planets" CSV file.
 		-  (In a larger project, I would structure this so that designers don't have to manually input the ID field, and potentially misspell/forget fields. But for a short project with 3 people, this should be fine.)
+-  When adding a new language to the project, designers should reference the new JSON language file and assign it a name in Resources > PlanetLoadInfo > LanguageLibrary. To change the default language of the project, designers should change the Default Language field under Canvas > InfoPanel in the Main scene.
 
 //ART ASSETS
 Planet textures taken off of this free site:

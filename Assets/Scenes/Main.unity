@@ -1257,7 +1257,7 @@ MonoBehaviour:
   planetName: {fileID: 939485894}
   image: {fileID: 1680008617}
   info: {fileID: 1107313452}
-  json: {fileID: 4900000, guid: 467d7ce020fc26b449db458564f7e731, type: 3}
+  defaultLanguage: English
 --- !u!1 &1680008615
 GameObject:
   m_ObjectHideFlags: 0
